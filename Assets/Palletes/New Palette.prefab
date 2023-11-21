@@ -608,8 +608,6 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 16be4276439a11143adf72effc9e929c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: f027332f5e93c0144b972b29e2c302b6, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 4a754fad3a279344594be4faf04304ba, type: 3}
@@ -705,8 +703,6 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 8678256e1f59d004897946d8f4566b94, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: e3442bb839b2a164d99620b903bd3a15, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 47
     m_Data:
@@ -843,11 +839,11 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6596072980937430144}
   m_Enabled: 1
-  m_CellSize: {x: 0.16, y: 0.16, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &6904357437038405330
+--- !u!114 &6921640947294499314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
