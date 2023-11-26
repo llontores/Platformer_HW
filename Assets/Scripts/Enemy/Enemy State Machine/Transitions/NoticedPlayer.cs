@@ -9,7 +9,6 @@ public class NoticedPlayer : Transition
     {
         if (Vector2.Distance(transform.position, Target.transform.position) <= _visibillityLength)
         {
-            print("игрок рядом со мной ");
             NeedTransit = true;
         }
     }

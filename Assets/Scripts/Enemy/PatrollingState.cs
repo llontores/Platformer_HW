@@ -9,7 +9,7 @@ public class PatrollingState : State
     [SerializeField] private Transform _leftEdge;
     [SerializeField] private Transform _rightEdge;
 
-    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer _renderer;
     private Animator _animator;
     private Vector3 _targetPosition;
 
@@ -17,7 +17,7 @@ public class PatrollingState : State
     {
         _targetPosition = _leftEdge.position;
         _animator = GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -37,6 +37,7 @@ public class PatrollingState : State
         }
 
         transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _targetPosition.x, _speed * Time.deltaTime), transform.position.y, 0);
-        _spriteRenderer.flipX = (transform.position.x == _leftEdge.position.x) ? true : (transform.position.x == _rightEdge.position.x) ? false : _spriteRenderer.flipX;
+        _renderer.flipX = (transform.position.x < _targetPosition.x) ? true : (transform.position.x > _targetPosition.x) ? false : _renderer.flipX;
+
     }
 }
