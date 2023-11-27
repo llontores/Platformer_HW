@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 159079798}
   - component: {fileID: 159079797}
   - component: {fileID: 159079799}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 249955165}
   - component: {fileID: 249955169}
   - component: {fileID: 249955167}
+  - component: {fileID: 249955170}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -1102,6 +1103,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 1.9981112}
   m_EdgeRadius: 0
+--- !u!114 &249955170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249955163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be77fc27fb72f9f49958bdc94f5e22b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &351832858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,6 +1616,12 @@ MonoBehaviour:
   _health: 5
   _speed: 10
   _jumpForce: 7
+  _attackPoint: {fileID: 1174399617}
+  _attackRange: 0.5
+  _enemiesMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _damage: 1
 --- !u!50 &830650565
 Rigidbody2D:
   serializedVersion: 4
@@ -2097,11 +2116,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 351832863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -245.4, y: 157.1}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.050416667, y: 0.89451855}
+  m_AnchorMax: {x: 0.1494167, y: 0.93522227}
+  m_AnchoredPosition: {x: -10, y: 3}
+  m_SizeDelta: {x: 10, y: 6}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &1283860702
 GameObject:
   m_ObjectHideFlags: 0
