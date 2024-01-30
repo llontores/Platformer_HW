@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private float _horizontalInput;
     private bool _isGrounded;
-    private float _sign;
 
     private void Start()
     {
@@ -27,6 +26,17 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
+
+    private void OnEnable()
+    {
+        HealPotion.Collected += ApplyAidKit;
+    }
+
+    private void OnDisable()
+    {
+        HealPotion.Collected -= ApplyAidKit;
+    }
+
     public void ApplyDamage(int damage)
     {
         _animator.SetTrigger("TakeHit");
@@ -78,6 +88,11 @@ public class Player : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(_damage);
         }
+    }
+
+    private void ApplyAidKit(int healValue)
+    {
+        _health += healValue;
     }
 
     private void OnDrawGizmosSelected()

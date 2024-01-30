@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float _delay;
     [SerializeField] private float _minXPos;
     [SerializeField] private float _maxXPos;
+    [SerializeField] private float _yPos;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class Spawner : MonoBehaviour
 
         while (true)
         {
-            Instantiate(_prefab,new Vector3(Random.Range(_minXPos, _maxXPos),transform.position.y,0),Quaternion.identity);
+            Instantiate(_prefab,new Vector3(Random.Range(_minXPos, _maxXPos),_yPos,0),Quaternion.identity);
 
             yield return delay;
         }
