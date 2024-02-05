@@ -7,6 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
+    private const string AnimationAttackTrigger = "Attack";
+    private const string AnimationTakingHitTrigger = "TakeHit";
+    private const string AnimationWalkingSpeed = "Speed";
+    private const string AnimationJumpningBool = "IsJumping";
+
     [SerializeField] private int _health;
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -39,7 +44,7 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(int damage)
     {
-        _animator.SetTrigger("TakeHit");
+        _animator.SetTrigger(AnimationTakingHitTrigger);
         _health -= damage;
     }
 
@@ -49,7 +54,7 @@ public class Player : MonoBehaviour
 
         if (Mathf.Abs(_horizontalInput) > 0.01)
         {
-            _animator.SetFloat("Speed", Mathf.Abs(_horizontalInput));
+            _animator.SetFloat(AnimationWalkingSpeed, Mathf.Abs(_horizontalInput));
             float sign = Mathf.Sign(_horizontalInput);
             transform.localScale = new Vector3(sign * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
@@ -59,7 +64,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
             _isGrounded = false;
-            _animator.SetBool("IsJumping", true);
+            _animator.SetBool(AnimationJumpningBool, true);
             _rigidbody2D.AddForce(_jumpForce * Vector2.up, ForceMode2D.Impulse);
         }
 
@@ -73,14 +78,14 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Ground ground))
         {
-            _animator.SetBool("IsJumping", false);
+            _animator.SetBool(AnimationJumpningBool, false);
             _isGrounded = true;
         }
     }
 
     private void Attack()
     {
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger(AnimationAttackTrigger);
 
         Collider2D[] enemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemiesMask);
 

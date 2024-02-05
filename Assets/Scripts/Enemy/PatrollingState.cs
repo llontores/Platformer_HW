@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent (typeof(FollowPlayer))]
 public class PatrollingState : State
 {
+    private const string AnimationWalking = "Walk";
+
     [SerializeField] private float _speed;
     [SerializeField] private Transform _leftEdge;
     [SerializeField] private Transform _rightEdge;
@@ -22,7 +25,7 @@ public class PatrollingState : State
 
     private void OnEnable()
     {
-        _animator.Play("Walk"); 
+        _animator.Play(AnimationWalking); 
     }
 
     private void Update()

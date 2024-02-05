@@ -5,6 +5,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class AttackState : State
 {
+    private const string AnimationAttack = "Attack";
+
     [SerializeField] private int _damage;
     [SerializeField] private float _delay;
 
@@ -29,7 +31,7 @@ public class AttackState : State
 
     private void Attack(Player target)
     {
-        _animator.Play("Attack");
+        _animator.Play(AnimationAttack);
         target.ApplyDamage(_damage);
     }
 }
