@@ -2,28 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class Player : MonoBehaviour
+public class Player : AliveObject
 {
     private const string AnimationAttackTrigger = "Attack";
     private const string AnimationTakingHitTrigger = "TakeHit";
     private const string AnimationWalkingSpeed = "Speed";
     private const string AnimationJumpningBool = "IsJumping";
 
-    [SerializeField] private int _health;
+    //[SerializeField] private int _health;
+    [SerializeField] private LayerMask _enemiesMask;
+    [SerializeField] private Transform _attackPoint;
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
-    [SerializeField] private Transform _attackPoint;
     [SerializeField] private float _attackRange;
-    [SerializeField] private LayerMask _enemiesMask;
     [SerializeField] private int _damage;
 
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private float _horizontalInput;
     private bool _isGrounded;
+    private float _horizontalInput;
 
     private void Start()
     {
@@ -42,10 +44,10 @@ public class Player : MonoBehaviour
         HealPotion.Collected -= ApplyAidKit;
     }
 
-    public void ApplyDamage(int damage)
+    public override void ApplyDamage(int damage)
     {
+        base.ApplyDamage(damage);
         _animator.SetTrigger(AnimationTakingHitTrigger);
-        _health -= damage;
     }
 
     private void Update()
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
             _animator.SetFloat(AnimationWalkingSpeed, Mathf.Abs(_horizontalInput));
             float sign = Mathf.Sign(_horizontalInput);
             transform.localScale = new Vector3(sign * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            InvokeDirectionChangedEvent(sign);
         }
 
         _rigidbody2D.velocity = new Vector2(_speed * _horizontalInput, _rigidbody2D.velocity.y);
@@ -95,10 +98,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ApplyAidKit(int healValue)
-    {
-        _health += healValue;
-    }
 
     private void OnDrawGizmosSelected()
     {
